@@ -2,50 +2,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "TransformChar.hpp"
 
-std::string transformChar(const char inputChar){
-    // Uppercase alphabetic characters
-    std::string inputText;
-    if (std::isalpha(inputChar)) {
-        inputText += std::toupper(inputChar);
-    }
-    // Transliterate digits to English words
-    switch (inputChar) {
-        case '0':
-            inputText += "ZERO";
-            break;
-        case '1':
-            inputText += "ONE";
-            break;
-        case '2':
-            inputText += "TWO";
-            break;
-        case '3':
-            inputText += "THREE";
-            break;
-        case '4':
-            inputText += "FOUR";
-            break;
-        case '5':
-            inputText += "FIVE";
-            break;
-        case '6':
-            inputText += "SIX";
-            break;
-        case '7':
-            inputText += "SEVEN";
-            break;
-        case '8':
-            inputText += "EIGHT";
-            break;
-        case '9':
-            inputText += "NINE";
-            break;
-    }
-    return inputText;
-        // If the character isn't alphabetic or numeric, DONT do anything
-}
-bool processCommandLine(const std::vector<std::string>& args, bool& helpRequested, bool& versionRequested, std::string& inputFileName, std::string& outputFileName){
+
+bool processCommandLine(bool& helpRequested, bool& versionRequested, std::string& inputFileName, std::string& outputFileName){
     if (helpRequested){
         std::cout
             << "Usage: mpags-cipher [-h/--help] [--version] [-i <file>] [-o <file>]\n\n"
@@ -127,8 +87,9 @@ int main(int argc, char* argv[]){
         }
     }
 
+    
     // processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFileName, outputFileName);
-    if (processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFileName, outputFileName) == 1){
+    if (processCommandLine(helpRequested, versionRequested, inputFileName, outputFileName) == 1){
         return 0;
     }
     // Initialise variables
