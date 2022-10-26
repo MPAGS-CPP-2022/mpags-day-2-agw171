@@ -3,37 +3,8 @@
 #include <string>
 #include <vector>
 #include "TransformChar.hpp"
+#include "ProcessCommandLine.hpp"
 
-
-bool processCommandLine(bool& helpRequested, bool& versionRequested, std::string& inputFileName, std::string& outputFileName){
-    if (helpRequested){
-        std::cout
-            << "Usage: mpags-cipher [-h/--help] [--version] [-i <file>] [-o <file>]\n\n"
-            << "Encrypts/Decrypts input alphanumeric text using classical ciphers\n\n"
-            << "Available options:\n\n"
-            << "  -h|--help        Print this help message and exit\n\n"
-            << "  --version        Print version information\n\n"
-            << "  -i FILE          Read text to be processed from FILE\n"
-            << "                   Stdin will be used if not supplied\n\n"
-            << "  -o FILE          Write processed text to FILE\n"
-            << "                   Stdout will be used if not supplied\n\n"
-            << std::endl;
-        return 1;
-    }
-    if (versionRequested){
-        std::cout<<"0.1.1"<<std::endl;
-        return 1; 
-    }
-    if (!outputFileName.empty()) {
-        std::cerr << "[warning] output to file ('" << outputFileName
-                  << "') not implemented yet, using stdout\n";
-    }
-    if (!inputFileName.empty()) {
-        std::cerr << "[warning] input from file ('" << inputFileName
-                  << "') not implemented yet, using stdin\n";
-    }
-    return 0;
-}
 int main(int argc, char* argv[]){
     // Convert the command-line arguments into a more easily usable form
     const std::vector<std::string> cmdLineArgs{argv, argv + argc};
